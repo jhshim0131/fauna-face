@@ -21,18 +21,12 @@ public class WebRestControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void hello_test() throws Exception{
+    public void HelloTest() throws Exception {
         String hello = "hello";
 
-        try {
             mvc.perform(get("/hello")).andExpect(status().isOk()).andExpect(content().string(hello));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "HelloWorld";
-    }
+
 }
