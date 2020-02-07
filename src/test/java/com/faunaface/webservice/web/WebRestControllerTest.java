@@ -11,6 +11,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import org.hamcrest.Matchers.*;
+
+import java.io.IOException;
+import java.io.Writer;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,7 +35,6 @@ public class WebRestControllerTest {
             mvc.perform(get("/hello"))
                     .andExpect(status().isOk())
                     .andExpect(content().string(hello));
-
     }
 
     @Test
@@ -40,14 +43,11 @@ public class WebRestControllerTest {
         int amount = 1000;
 
         mvc.perform(
-                get("/hello/dto")
-                        .param("name", name)
+                get("/hello/dto").param("name", name)
                         .param("amount", String.valueOf(amount)))
-            .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", Matchers.is(name)))
-                .andExpect(jsonPath("$.amount", Matchers.is(amount)));
-
-
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.name", Matchers.is(name)))
+        .andExpect(jsonPath("$.amount", Matchers.is(amount)));
 
     }
 

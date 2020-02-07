@@ -6,7 +6,7 @@ import org.junit.Test;
 public class HelloResponseDtoTest {
 
     @Test
-    public void LombokTest() {
+    public void LombokArgsGenerationTest() {
         String name="test";
         int amount=1000;
 
